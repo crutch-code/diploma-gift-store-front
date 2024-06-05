@@ -1,15 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+<!--    <p>{{authenticated.user.id}}</p>-->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {mapGetters} from "vuex";
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+  },
+  computed:{
+
+  },
+  mounted() {
+    console.log(this.$store)
+    // this.$store.dispatch('auth');
+    console.log(this.$store.getters.user.authenticated);
+    console.log('Component mounted.');
   }
 }
 </script>
