@@ -1,0 +1,10 @@
+
+:root{
+    --my-palette-100: #c6d1d4;
+    --my-palette-200: #edfbfe;
+    --my-palette-300: #27292a;
+    --my-palette-400: #4f5354;
+    --my-palette-500: #767d7f;
+    --my-palette-blue: rgba(98, 133, 199, 0.9);
+    --my-palette-alert: rgba(236, 48, 111, 0.73);
+}

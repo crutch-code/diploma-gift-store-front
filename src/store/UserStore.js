@@ -22,14 +22,17 @@ export default {
         }
     },
     actions: {
-        auth(commit)  {
-            commit("setUser", {
+        auth(context)  { //todo: mock
+            context.commit("setUser", {
                 id: 1,
                 username: 'test user',
                 email: 'test@test.com',
                 password: 'test',
                 jwt: 'test',
             })
+        },
+        register(context, payload) {
+
         }
     }
 }

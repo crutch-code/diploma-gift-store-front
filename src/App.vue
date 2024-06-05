@@ -1,6 +1,7 @@
 <template>
   <div>
-<!--    <p>{{authenticated.user.id}}</p>-->
+    <router-view>
+    </router-view>
   </div>
 </template>
 
@@ -10,22 +11,27 @@ import {mapGetters} from "vuex";
 
 export default {
   name: 'App',
+  data(){
+
+  },
   components: {
 
   },
-  computed:{
 
-  },
   mounted() {
-    console.log(this.$store)
-    // this.$store.dispatch('auth');
-    console.log(this.$store.getters.user.authenticated);
+    this.$router.push({path:'/'})
+    console.log(this.authenticated);
     console.log('Component mounted.');
   }
 }
 </script>
 
 <style>
+@import url('/src/assets/colors.css');
+
+body{
+  background-color: var(--my-palette-200);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
