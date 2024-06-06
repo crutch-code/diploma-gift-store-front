@@ -1,19 +1,31 @@
 <template>
   <div class="main">
-    <div class="main-text">
-      <img src="@/assets/gift-hand.svg" alt="Gift Hand" style="width: 20vw; height: 20vh;" />
+    <div class="main-text animate__animated animate__backInLeft">
+      <img src="@/assets/gift-hand.svg" alt="Gift Hand" style="width: 20vw; height: 20vh;"/>
       <p class="tenor-sans-regular font24pt">
         Дарите радость другим!
       </p>
     </div>
-    <div class="auth-container">
+    <div style="height: 40vh; width: 0; border-left: 1px solid var(--my-palette-100)"/>
+    <div class="auth-container shadow animate__animated animate__backInRight">
       <div class="auth-inputs">
         <input class="tenor-sans-regular font16pt" type="text" placeholder="Имя пользователя/E-mail">
-        <input class="tenor-sans-regular font16pt" type="password" placeholder="Пароль" />
+        <input class="tenor-sans-regular font16pt" type="password" placeholder="Пароль"/>
       </div>
-      <div class="">
+      <div class="auth-main-buttons">
+        <div style="width: 100%; display: flex; justify-content: space-evenly">
+          <Button
+              text="Войти"
+              invert="true"
+              :handler="auth"
+          />
+          <Button
+            text="Зарегистрироваться"
+            :handler="registerRedirect"
+          />
+        </div>
         <Button
-            text="уыва"
+            text="Забыли пароль?"
             outcome="true"
             :handler="forgotPassword"
         />
@@ -25,22 +37,37 @@
 
 <script>
 import Button from "@/components/Button.vue";
+import {mapGetters} from "vuex";
+import 'animate.css'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Auth",
   components: {Button},
-  data(){
-    return{
-
-    }
+  data() {
+    return {}
   },
   mounted() {
     console.log("Component Auth mounted.")
   },
-  methods:{
-    forgotPassword(){
-      alert('asdfasdfsadf')
+  computed: {
+    ...mapGetters('user', ['authenticated'])
+  },
+  methods: {
+    forgotPassword() {
+      alert('Заглушка')
+    },
+
+    auth() {
+      this.$store.dispatch('user/auth',
+          () => {
+            if (this.authenticated.jwt !== undefined) {
+              this.$router.push('/')
+            }
+          })
+    },
+    registerRedirect(){
+      this.$router.push('/register')
     }
   }
 }
@@ -50,38 +77,21 @@ export default {
 <style scoped>
 @import url('/src/assets/fonts.css');
 @import url('/src/assets/colors.css');
+@import url('/src/assets/defaults.css');
 
-.tenor-sans-regular.font16pt{
-  font-size: 16pt;
-  color: var(--my-palette-300);
-}
-.tenor-sans-regular.font24pt{
-  font-size: 24pt;
-  color: var(--my-palette-300);
-}
 
-input{
-  background-color: var(--my-palette-200);
-  height: max-content;
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  border-bottom-color: var(--my-palette-500);
-  border-bottom: .05rem solid ;
+
+.auth-main-buttons{
+  padding-top: 3vh;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
-input:hover{
-  transform: scale(1.05);
-  transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
-  transition-duration: .1s;
-}
-input:active,
-
-input:focus{
-  outline: none;
-}
-
-.auth-inputs{
+.auth-inputs {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content;
@@ -90,14 +100,11 @@ input:focus{
 }
 
 .auth-container {
-  //background-color: var(--my-palette-100);
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  padding-top: 3rem;
+  padding: 3rem 1rem 1rem;
   left: 0;
   right: 0;
-  //top: 30vh;
   border: solid 1px;
   border-color: var(--my-palette-500);
   width: 20vw;
@@ -105,7 +112,8 @@ input:focus{
   height: max-content;
 }
 
-.main{
+
+.main {
   display: flex;
   width: 50vw;
   flex-direction: row;
@@ -120,7 +128,7 @@ input:focus{
   top: 30vh;
 }
 
-.main-text{
+.main-text {
   width: auto;
   display: flex;
   flex-direction: column;

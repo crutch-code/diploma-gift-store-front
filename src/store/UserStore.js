@@ -11,7 +11,7 @@ export default {
         }
     },
     getters: {
-        authenticated:(state) => {
+        authenticated: (state) => {
             return state.user
         }
 
@@ -22,7 +22,8 @@ export default {
         }
     },
     actions: {
-        auth(context)  { //todo: mock
+        auth(context, payload) {
+            //todo: mock
             context.commit("setUser", {
                 id: 1,
                 username: 'test user',
@@ -30,6 +31,7 @@ export default {
                 password: 'test',
                 jwt: 'test',
             })
+            payload()
         },
         register(context, payload) {
 

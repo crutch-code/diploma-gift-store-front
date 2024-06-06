@@ -1,6 +1,7 @@
 import Index from "@/pages/Index.vue";
 import Auth from "@/pages/Auth.vue";
 import {createRouter, createWebHistory} from "vue-router";
+import Register from "@/pages/Register.vue";
 
 const routes = [
     {
@@ -10,6 +11,10 @@ const routes = [
     {
         path: '/auth',
         component: Auth
+    },
+    {
+        path: '/register',
+        component: Register
     }
 ]
 

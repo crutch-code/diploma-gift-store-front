@@ -1,8 +1,12 @@
 <template>
   <button
-          class="tenor-sans-regular"
-          :class="{outcome: outcome}"
-          @click="{ }"
+      class="tenor-sans-regular font16pt"
+      :class="{
+        outcome: outcome,
+        invert: invert,
+        alert: alert
+      } "
+      @click="handler === undefined ? ()=> {} : handler()"
   >{{ text }}
   </button>
 </template>
@@ -16,20 +20,14 @@ export default {
     'alert',
     'invert',
     'outcome',
-    'handler'
+    'handler',
   ],
 
-  data(){
-    return{
-      config: {
-        default
-      }
-    }
+  data() {
+    return {}
   },
-  methods: {
-
-  },
-  computed(){
+  methods: {},
+  computed() {
 
   }
 }
@@ -37,13 +35,40 @@ export default {
 
 <style scoped>
 button {
-  padding: .5rem;
+  padding: .7rem;
   border: 1px solid var(--my-palette-100);
   background-color: var(--my-palette-200);
+  color: var(--my-palette-300);
+  border-radius: 1rem;
+  font-size: 24pt;
+  margin-left: 0rem;
+}
+
+button:hover{
+  color: var(--my-palette-100);
+}
+
+button:active {
+  color: var(--my-palette-400);
 }
 
 button.alert {
   background-color: var(--my-palette-alert);
+}
+
+button.invert{
+  background-color: var(--my-palette-400);
+  color: var(--my-palette-100);
+  border-color: var(--my-palette-400);
+}
+
+button.invert:hover {
+  background-color: var(--my-palette-200);
+  color: var(--my-palette-300);
+}
+
+button.invert:active{
+  color: var(--my-palette-100);
 }
 
 button.outcome {

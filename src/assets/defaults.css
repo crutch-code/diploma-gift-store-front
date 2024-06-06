@@ -1,0 +1,25 @@
+.shadow{
+    box-shadow: 7px 7px 10px 3px rgba(68, 79, 86, 0.2);
+}
+
+input {
+    background-color: var(--my-palette-200);
+    height: max-content;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom-color: var(--my-palette-500);
+    border-bottom: .05rem solid;
+    width: 100%;
+}
+
+input:hover {
+    transform: scale(1.05);
+    transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    transition-duration: .1s;
+}
+
+input:active,
+input:focus {
+    outline: none;
+}
