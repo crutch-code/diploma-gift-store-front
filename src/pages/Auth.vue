@@ -15,7 +15,6 @@
         <Button
             text="уыва"
             outcome="true"
-            @click="forgotPassword"
             :handler="forgotPassword"
         />
       </div>

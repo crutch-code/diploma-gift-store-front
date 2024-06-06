@@ -2,7 +2,7 @@
   <button
           class="tenor-sans-regular"
           :class="{outcome: outcome}"
-          @click="{handler!== un }"
+          @click="{ }"
   >{{ text }}
   </button>
 </template>
@@ -19,7 +19,17 @@ export default {
     'handler'
   ],
 
+  data(){
+    return{
+      config: {
+        default
+      }
+    }
+  },
   methods: {
+
+  },
+  computed(){
 
   }
 }
