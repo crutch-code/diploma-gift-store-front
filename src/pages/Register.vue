@@ -129,7 +129,7 @@ form{
   background-color: var(--my-palette-200);
   display: grid;
   grid-template-rows: 1fr 1rem auto;
-  gap: 5vh;
+  gap: 2vh;
   padding: 2vw;
   width: 100%;
 }

@@ -1,6 +1,6 @@
 <template>
   <button
-      class="tenor-sans-regular font16pt"
+      class="tenor-sans-regular font16pt {{additional}}"
       :class="{
         outcome: outcome,
         invert: invert,
@@ -18,6 +18,7 @@ export default {
     'text',
     'icon',
     'alert',
+    'additional',
     'invert',
     'outcome',
     'handler',
