@@ -12,6 +12,10 @@
     </div>
     <div class="buttons">
       <Button
+        icon="gift.svg"
+        :handler="()=>{this.$router.push({name:'gift', params: {uuid: item.id}})}"
+      />
+      <Button
           icon="edit.svg"
           :handler="()=>{}"
       />
@@ -54,6 +58,7 @@ export default {
 
 <style scoped>
 .gift-list-item {
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,7 +77,7 @@ export default {
 }
 .buttons{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
 }
 </style>

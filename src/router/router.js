@@ -13,8 +13,15 @@ const routes = [
         component: Index
     },
     {
-        path: '/collections/:uuid/gifts',
-        component: Index
+        path: '/collections/:uuid',
+        component: Index,
+        children:[
+            {
+                name: 'gift',
+                path: 'gift',
+                component: Index
+            }
+        ]
     },
     {
         path: '/collections/add',

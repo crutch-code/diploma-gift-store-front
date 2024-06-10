@@ -64,13 +64,13 @@ export default {
               this.activeIndex = 1
             }
           },
-          {
-            text: 'Создать профиль',
-            handler: ()=> {
-              this.$router.push('/create-gifts')
-              this.activeIndex = 2
-            }
-          }
+          // {
+          //   text: 'Создать профиль',
+          //   handler: ()=> {
+          //     this.$router.push('/create-gifts')
+          //     this.activeIndex = 2
+          //   }
+          // }
         ],
         activeIndex: undefined
     }
