@@ -1,6 +1,6 @@
 <template>
   <div class="main animate__animated animate__backInDown">
-    <form class="shadow">
+    <div class="input-form shadow">
       <h3 class="title tenor-sans-regular font16pt">Начните удивлять!</h3>
       <div style="border-top: 1px solid var(--my-palette-100);"></div>
       <div>
@@ -8,8 +8,8 @@
             class="tenor-sans-regular font16pt"
             type="text"
             placeholder="Ваш чудесный никнейм"
-            v-model="this.authenticated.name"
-            v-on:input="validName(this.authenticated.name)"
+            v-model="this.authenticated.username"
+            v-on:input="validName(this.authenticated.username)"
         />
         <p v-if="!valid.name" style="color: var(--my-palette-alert)">
           Никнейм должен содержать буквы латинского алфавита
@@ -60,7 +60,7 @@
           :handler="registerUser"
           invert="true"
       />
-    </form>
+    </div>
 
   </div>
 </template>
@@ -93,15 +93,19 @@ export default {
     ...mapGetters('user', ['authenticated'])
   },
   mounted() {
-    this.authenticated.email !== undefined ? this.validEmail(this.authenticated.email) : ()=>{}
-    this.authenticated.name !== undefined ? this.validName(this.authenticated.name) : ()=>{}
-    this.authenticated.password !== undefined ? this.validPassword(this.authenticated.email) : ()=>{}
+    // this.authenticated.email !== undefined ? this.validEmail(this.authenticated.email) : ()=>{}
+    // this.authenticated.username !== undefined ? this.validName(this.authenticated.username) : ()=>{}
+    // this.authenticated.password !== undefined ? this.validPassword(this.authenticated.email) : ()=>{}
   },
   methods:{
-    registerUser(){
-      if(!this.valid.name || !this.valid.email || !this.valid.password || !this.valid.password.compared)
+    async registerUser() {
+      if (!this.valid.name || !this.valid.email || !this.valid.password || !this.valid.password.compared)
         return;
-      this.$router.push('/auth');
+      await this.$store.dispatch('user/register', this.authenticated);
+      if (this.authenticated.jwt !== undefined) {
+        console.log(this.authenticated)
+        this.$router.push('/');
+      }
     },
     validName(name){
       this.valid.name = name !== '' && name.match(/^[a-zA-Z]\w*$/) !== null;
@@ -124,7 +128,7 @@ export default {
 @import url('/src/assets/colors.css');
 @import url('/src/assets/defaults.css');
 
-form{
+.input-form{
   border: 1px solid var(--my-palette-100);
   background-color: var(--my-palette-200);
   display: grid;

@@ -1,3 +1,6 @@
+import axios from "axios";
+import Configure from "../../api/Configure";
+
 export default {
     namespaced: true,
     state() {
@@ -19,22 +22,51 @@ export default {
     mutations: {
         setUser(state, payload) {
             state.user = payload
+        },
+        userLogout(state) {
+            state.user = {
+                id: undefined,
+                username: undefined,
+                email: undefined,
+                jwt: undefined
+            }
         }
     },
     actions: {
-        auth(context, payload) {
-            //todo: mock
-            context.commit("setUser", {
-                id: 1,
-                username: 'test user',
-                email: 'test@test.com',
-                password: 'test',
-                jwt: 'test',
+        async auth(context, payload) {
+            await axios.post(
+                Configure.baseUrl + '/login',
+                JSON.stringify(payload),
+                {
+                    headers:{
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                }
+            ).then(response => {
+                console.log(response)
+                context.commit('setUser', response.data);
+            }).catch(ex =>{
+                console.log(ex)
             })
-            payload()
         },
-        register(context, payload) {
-
+        async register(context, payload) {
+            await axios.post(
+                Configure.baseUrl + '/register',
+                JSON.stringify(payload),
+                {
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                }
+            ).then(response => {
+                console.log(response)
+                context.commit('setUser', response.data);
+            }).catch(ex=> {console.log(ex)})
+        },
+        logout(context, payload) {
+            console.log('/user/logout dispatch')
+            context.commit("userLogout")
+            payload()
         }
     }
 }

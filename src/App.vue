@@ -6,21 +6,11 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-
-
 export default {
   name: 'App',
-  data(){
-
-  },
-  components: {
-
-  },
 
   mounted() {
     this.$router.push({path:'/'})
-    console.log(this.authenticated);
     console.log('Component mounted.');
   }
 }
@@ -31,6 +21,10 @@ export default {
 
 body{
   background-color: var(--my-palette-200);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -23,3 +23,22 @@ input:active,
 input:focus {
     outline: none;
 }
+
+button {
+    align-self: center;
+    padding: .7rem;
+    border: 1px solid var(--my-palette-100);
+    background-color: var(--my-palette-200);
+    color: var(--my-palette-300);
+    border-radius: 1rem;
+    font-size: 24pt;
+    margin-left: 0rem;
+}
+
+button:hover{
+    color: var(--my-palette-100);
+}
+
+button:active {
+    color: var(--my-palette-400);
+}

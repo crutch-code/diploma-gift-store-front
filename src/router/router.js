@@ -9,6 +9,18 @@ const routes = [
         component: Index
     },
     {
+        path: '/collections',
+        component: Index
+    },
+    {
+        path: '/collections/:uuid/gifts',
+        component: Index
+    },
+    {
+        path: '/collections/add',
+        component: Index
+    },
+    {
         path: '/auth',
         component: Auth
     },

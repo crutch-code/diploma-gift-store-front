@@ -1,5 +1,14 @@
 <template>
   <button
+      v-if="icon !== undefined"
+      class="tenor-sans-regular font16pt icon"
+      @click="handler === undefined ? ()=> {} : handler()"
+  >
+    <img :src="icon" alt="icon"/>
+  </button>
+
+  <button
+      v-else
       class="tenor-sans-regular font16pt {{additional}}"
       :class="{
         outcome: outcome,
@@ -7,7 +16,7 @@
         alert: alert
       } "
       @click="handler === undefined ? ()=> {} : handler()"
-  >{{ text }}
+  >{{text}}
   </button>
 </template>
 
@@ -35,23 +44,7 @@ export default {
 </script>
 
 <style scoped>
-button {
-  padding: .7rem;
-  border: 1px solid var(--my-palette-100);
-  background-color: var(--my-palette-200);
-  color: var(--my-palette-300);
-  border-radius: 1rem;
-  font-size: 24pt;
-  margin-left: 0rem;
-}
 
-button:hover{
-  color: var(--my-palette-100);
-}
-
-button:active {
-  color: var(--my-palette-400);
-}
 
 button.alert {
   background-color: var(--my-palette-alert);
@@ -85,5 +78,15 @@ button.outcome:hover {
 
 button.outcome:active {
   color: var(--my-palette-400);
+}
+
+button.icon{
+  border: 0;
+  height: min-content;
+  width: min-content;
+}
+
+button.icon:hover{
+  background-color: var(--my-palette-100);
 }
 </style>

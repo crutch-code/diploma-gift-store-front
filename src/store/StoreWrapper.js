@@ -1,6 +1,6 @@
 import {createStore} from "vuex";
 import user from "@/store/UserStore";
-
+import collections from "@/store/CollectionsStore"
 
 export const store = createStore({
     state: {},
@@ -8,7 +8,8 @@ export const store = createStore({
     mutations: {},
     actions: {},
     modules: {
-        user
+        user,
+        collections
     },
     devtools: true
 })

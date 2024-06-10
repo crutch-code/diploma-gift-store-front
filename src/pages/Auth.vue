@@ -9,8 +9,9 @@
     <div style="height: 40vh; width: 0; border-left: 1px solid var(--my-palette-100)"/>
     <div class="auth-container shadow animate__animated animate__backInRight">
       <div class="auth-inputs">
-        <input class="tenor-sans-regular font16pt" type="text" placeholder="Имя пользователя/E-mail">
-        <input class="tenor-sans-regular font16pt" type="password" placeholder="Пароль"/>
+        <input v-model="this.authenticated.username" class="tenor-sans-regular font16pt" type="text" placeholder="Имя пользователя/E-mail">
+        <input v-model="this.authenticated.password" class="tenor-sans-regular font16pt" type="password" placeholder="Пароль"/>
+        <p v-if="isFailed" class="tenor-sans-regular font16pt" style="color: var(--my-palette-alert)">Не верный логин или пароль</p>
       </div>
       <div class="auth-main-buttons">
         <div style="width: 100%; display: flex; justify-content: space-evenly">
@@ -41,11 +42,12 @@ import {mapGetters} from "vuex";
 import 'animate.css'
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: "Auth",
   components: {Button},
   data() {
-    return {}
+    return {
+      isFailed: false
+    }
   },
   mounted() {
     console.log("Component Auth mounted.")
@@ -58,13 +60,12 @@ export default {
       alert('Заглушка')
     },
 
-    auth() {
-      this.$store.dispatch('user/auth',
-          () => {
-            if (this.authenticated.jwt !== undefined) {
-              this.$router.push('/')
-            }
-          })
+    async auth() {
+      await this.$store.dispatch('user/auth', this.authenticated);
+
+      if(this.authenticated.jwt === undefined) { this.isFailed = true; return;}
+
+      this.$router.push('/');
     },
     registerRedirect(){
       this.$router.push('/register')
@@ -94,7 +95,7 @@ export default {
 .auth-inputs {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content;
+  grid-template-rows: repeat(3, 1rem);
   gap: 2rem;
   width: 100%;
 }
