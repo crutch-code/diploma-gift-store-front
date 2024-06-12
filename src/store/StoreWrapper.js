@@ -1,6 +1,7 @@
 import {createStore} from "vuex";
 import user from "@/store/UserStore";
 import collections from "@/store/CollectionsStore"
+import gifts from "@/store/GiftStore"
 
 export const store = createStore({
     state: {},
@@ -9,7 +10,8 @@ export const store = createStore({
     actions: {},
     modules: {
         user,
-        collections
+        collections,
+        gifts
     },
     devtools: true
 })

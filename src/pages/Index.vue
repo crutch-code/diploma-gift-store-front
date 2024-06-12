@@ -11,6 +11,9 @@
         <div v-if="this.$route.path === '/collections/add'">
           <CreateGiftCollection :uid="authenticated.id"/>
         </div>
+        <div v-if="this.$route.name === 'gifts'">
+          <GiftCollections/>
+        </div>
         <!--      <GiftItemComponent-->
         <!--        v-for="(it, idx) in items"-->
         <!--        :key="idx"-->
@@ -28,10 +31,12 @@ import GiftItemComponent from "@/components/GiftItemComponent.vue";
 import CollectionItemComponent from "@/components/CollectionItemComponent.vue";
 import CollectionsComponent from "@/components/CollectionsComponent.vue";
 import CreateGiftCollection from "@/components/CreateCollectionComponent.vue";
+import GiftCollections from "@/components/GiftCollections.vue";
 
 export default {
   name: "Index",
   components: {
+    GiftCollections,
     CreateGiftCollection,
     CollectionsComponent, CollectionItemComponent, GiftItemComponent, MainContent, NavHeader},
 

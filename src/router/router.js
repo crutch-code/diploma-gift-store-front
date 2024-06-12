@@ -17,8 +17,8 @@ const routes = [
         component: Index,
         children:[
             {
-                name: 'gift',
-                path: 'gift',
+                name: 'gifts',
+                path: 'gifts',
                 component: Index
             }
         ]

@@ -12,7 +12,6 @@ export default {
         collections: (state) => {
             return state.collections
         },
-
     },
     mutations: {
         setCollections(state, payload) {

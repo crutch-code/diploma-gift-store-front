@@ -1,6 +1,6 @@
   <template>
     <div class="gift-card tenor-sans-regular font16pt">
-      <p style="background-color: var(--my-palette-100); padding: 1rem 0 1rem 0.3rem; border-radius: 10px">{{ this.item.name }}</p>
+      <p style="background-color: var(--my-palette-100); max-height: min-content; padding: 1rem 0 1rem 0.3rem; border-radius: 10px">{{ this.item.name }}</p>
       <img class="image" :src="this.item.picture" alt="source picture">
       <p style="word-break: break-word; border: 1px solid var(--my-palette-100); padding: 0.5rem">
         <span>Описание товара: </span>
@@ -17,7 +17,7 @@
             text="Открыть товар"
         />
         <Button
-            icon="bascket.svg"
+            icon="../../basket.svg"
             :handler="()=> {alert('Переход в корзину')}"
         />
       </div>
@@ -60,15 +60,11 @@
     display: grid;
     grid-template-columns: 100%;
     gap: 1rem;
-    width: max-content;
+    width: auto;
   }
 
-  span {
-
-  }
 
   p {
-    //word-break: normal;
     padding: 0;
     margin: 0;
     text-align: left;
@@ -86,7 +82,7 @@
     justify-self: center;
     flex-direction: row;
     justify-content: space-around;
-    width: 40%;
+    width: 60%;
     align-items: center;
   }
   </style>
