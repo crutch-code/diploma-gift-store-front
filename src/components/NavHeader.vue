@@ -23,7 +23,7 @@
             :handler="logoutHandler"
           />
         <Button
-            icon="bascket.svg"
+            icon="basket.svg"
             outcome="true"
             :handler="logoutHandler"
         />

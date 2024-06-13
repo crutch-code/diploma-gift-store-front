@@ -74,7 +74,8 @@ export default {
                 console.log(ex)
             })
         },
-        findById(state, payload) {
+        findById(context, payload) {
+
             if (payload.id === undefined) {
                 return {
                     id: undefined,
@@ -84,7 +85,8 @@ export default {
                     category: undefined
                 }
             }
-            return state.collections.find(it => it.id === payload.id)
+            console.log(context.state.collections)
+            return context.state.collections.find(it => it.id === payload.id)
         }
     }
 }

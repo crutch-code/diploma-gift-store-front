@@ -13,7 +13,7 @@
     <div class="buttons">
       <Button
         icon="gift.svg"
-        :handler="()=>{this.$router.push({name:'gifts', params: {uuid: item.id}})}"
+        :handler="()=>{this.$router.push({name:'gifts', params: {uuid: item.id, category: item.category}})}"
       />
       <Button
           icon="edit.svg"

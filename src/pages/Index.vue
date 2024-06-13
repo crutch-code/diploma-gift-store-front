@@ -12,7 +12,7 @@
           <CreateGiftCollection :uid="authenticated.id"/>
         </div>
         <div v-if="this.$route.name === 'gifts'">
-          <GiftCollections/>
+          <GiftCollections :uid="authenticated.id"/>
         </div>
         <!--      <GiftItemComponent-->
         <!--        v-for="(it, idx) in items"-->

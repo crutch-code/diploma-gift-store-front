@@ -18,7 +18,7 @@ const routes = [
         children:[
             {
                 name: 'gifts',
-                path: 'gifts',
+                path: 'gifts/:category',
                 component: Index
             }
         ]

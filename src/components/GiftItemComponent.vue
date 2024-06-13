@@ -11,14 +11,24 @@
       <p style="text-align: end; width: 100%; align-self: center">
         <b>Цена: {{ this.item.price }}</b>
       </p>
+      <p v-if="relativity !== undefined">
+        Релевантность: {{ relativity.percents }}%
+      </p>
       <div class=" buttons">
         <Button
             :handler="hrefHandler"
-            text="Открыть товар"
+            text="В магазин"
         />
         <Button
-            icon="../../basket.svg"
-            :handler="()=> {alert('Переход в корзину')}"
+            icon="../../../like.svg"
+            :handler="approveHandler"
+        /><Button
+          icon="../../../dislike.svg"
+          :handler="disapproveHandler"
+      />
+        <Button
+            icon="../../../basket.svg"
+            :handler="()=>{}"
         />
       </div>
     </div>
@@ -38,7 +48,11 @@
         name: String,
         description: String,
         price: Number,
-      }
+        relativity: Array,
+      },
+      approveHandler: Function,
+      disapproveHandler: Function,
+      category: String
     },
     methods: {
       hrefHandler() {
@@ -47,6 +61,13 @@
           return;
         }
         alert('Not Provided Link')
+      }
+    },
+    computed:{
+      relativity(){
+        console.log(this.item.relativity);
+        return this.item?.relativity?.find(i => i.category === this.category);
+        // return undefined;
       }
     }
   }
@@ -82,7 +103,7 @@
     justify-self: center;
     flex-direction: row;
     justify-content: space-around;
-    width: 60%;
+    width: 100%;
     align-items: center;
   }
   </style>

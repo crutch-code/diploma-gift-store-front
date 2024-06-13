@@ -17,10 +17,29 @@ export default {
     mutations: {
         setGifts(state, payload) {
             state.gifts = payload
+        },
+        replaceRel(state, payload) {
+            state.gifts.find(item => item.id === payload.id).relativity = payload
         }
     },
     actions: {
-        async getAllGifts(context, payload) {
+        async getGiftsByCategory(context, payload) {
+            await axios.get(
+                Configure.baseUrl + '/gifts?category=' + payload.category ,
+                {
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                }
+            ).then(response => {
+                console.log(response)
+                context.commit('setGifts', response.data === undefined? [] : response.data);
+            }).catch(ex => {
+                console.log(ex)
+            })
+        },
+
+        async getAllGifts(context) {
             await axios.get(
                 Configure.baseUrl + '/gifts',
                 {
@@ -36,22 +55,40 @@ export default {
             })
         },
 
-        // async addCollection(context, payload) {
-        //     await axios.put(
-        //         Configure.baseUrl + '/collections?uid=' + payload.uid,
-        //         JSON.stringify(payload.body),
-        //         {
-        //             headers: {
-        //                 'Content-Type': 'application/json; charset=UTF-8'
-        //             }
-        //         }
-        //     ).then(response => {
-        //         console.log(response)
-        //         context.commit('addCollection', response.data);
-        //     }).catch(ex => {
-        //         console.log(ex)
-        //     })
-        // },
+        async approve(context, payload) {
+            console.log(payload)
+            await axios.put(
+                Configure.baseUrl + '/gifts/relativity/approve?id=' + payload.id,
+                JSON.stringify(payload.data),
+                {
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                }
+            ).then(response => {
+                console.log(response)
+                context.commit('replaceRel', response.data);
+            }).catch(ex => {
+                console.log(ex)
+            })
+        },
+
+        async disapprove(context, payload) {
+            await axios.put(
+                Configure.baseUrl + '/gifts/relativity/disapprove?id=' + payload.id,
+                JSON.stringify(payload.data),
+                {
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                }
+            ).then(response => {
+                console.log(response)
+                context.commit('replaceRel', response.data);
+            }).catch(ex => {
+                console.log(ex)
+            })
+        }
         //
         // async deleteCollection(context, payload) {
         //     await axios.delete(
